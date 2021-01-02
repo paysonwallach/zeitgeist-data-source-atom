@@ -8,6 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "noEmit": false,
     "declaration": false,
     "noUnusedLocals": true,

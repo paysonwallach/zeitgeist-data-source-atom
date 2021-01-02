@@ -21,6 +21,7 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "file-url": "^3.0.0",
     "mmmagic": "^0.5.3",
     "tslib": "^2.0.3",
     "typescript-json-serializer": "^2.5.2",

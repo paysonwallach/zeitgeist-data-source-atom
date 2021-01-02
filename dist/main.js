@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deactivate = exports.activate = void 0;
+const tslib_1 = require("tslib");
 const atom_1 = require("atom");
 const child_process_1 = require("child_process");
 const electron_1 = require("electron");
-const mmm = require("mmmagic");
+const file_url_1 = tslib_1.__importDefault(require("file-url"));
+const mmm = tslib_1.__importStar(require("mmmagic"));
 const typescript_json_serializer_1 = require("typescript-json-serializer");
 const util_1 = require("util");
 const protocol_1 = require("./protocol");
@@ -59,8 +61,9 @@ function activate(state) {
         const editorSubscriptions = new atom_1.CompositeDisposable();
         try {
             const title = editor.getTitle();
-            const uri = editor.getPath();
-            if (uri !== undefined) {
+            const path = editor.getPath();
+            if (path !== undefined) {
+                const uri = file_url_1.default(path);
                 logEvent(title, uri, InterpretationType.Access);
                 editorSubscriptions.add(editor.onDidDestroy(() => {
                     logEvent(title, uri, InterpretationType.Exit);

@@ -18,6 +18,7 @@
 import { CompositeDisposable } from "atom"
 import { spawn, ChildProcess } from "child_process"
 import { shell } from "electron"
+import fileUrl from "file-url"
 import * as mmm from "mmmagic"
 import { serialize } from "typescript-json-serializer"
 import { promisify } from "util"
@@ -124,9 +125,10 @@ export function activate(state: any) {
 
         try {
             const title = editor.getTitle()
-            const uri = editor.getPath()
+            const path = editor.getPath()
 
-            if (uri !== undefined) {
+            if (path !== undefined) {
+                const uri = fileUrl(path)
                 logEvent(title, uri, InterpretationType.Access)
                 editorSubscriptions.add(
                     editor.onDidDestroy(() => {

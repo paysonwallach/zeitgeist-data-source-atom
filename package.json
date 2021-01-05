@@ -23,7 +23,7 @@
   "dependencies": {
     "file-url": "^3.0.0",
     "mmmagic": "^0.5.3",
-    "tslib": "^2.0.3",
+    "tslib": "^2.1.0",
     "typescript-json-serializer": "^2.5.2",
     "uuidv4": "^6.2.6"
   },

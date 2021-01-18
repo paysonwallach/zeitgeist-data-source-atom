@@ -4,10 +4,10 @@
   "description": "Log activity in Atom to Zeitgeist.",
   "license": "GPL-3.0",
   "author": "Payson Wallach <payson@paysonwallach.com>",
-  "homepage": "https://github.com/paysonwallach/atom-zeitgeist#readme",
+  "homepage": "https://github.com/paysonwallach/zeitgeist-logger-atom#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paysonwallach/atom-zeitgeist"
+    "url": "https://github.com/paysonwallach/zeitgeist-logger-atom"
   },
   "main": "dist/main",
   "scripts": {
@@ -63,20 +63,20 @@
     }
   },
   "meta": {
-    "title": "atom-zeitgeist",
+    "title": "zeitgeist-logger-atom",
     "repository": {
       "owner": "paysonwallach",
-      "name": "atom-zeitgeist"
+      "name": "zeitgeist-logger-atom"
     },
     "license": {
       "name": "GNU General Public License v3.0",
-      "url": "https://github.com/paysonwallach/atom-zeitgeist/blob/master/LICENSE"
+      "url": "https://github.com/paysonwallach/zeitgeist-logger-atom/blob/master/LICENSE"
     },
     "codeOfConduct": {
-      "url": "https://github.com/paysonwallach/atom-zeitgeist/blob/master/CODE_OF_CONDUCT.md"
+      "url": "https://github.com/paysonwallach/zeitgeist-logger-atom/blob/master/CODE_OF_CONDUCT.md"
     },
     "releases": {
-      "url": "https://github.com/paysonwallach/atom-zeitgeist/releases"
+      "url": "https://github.com/paysonwallach/zeitgeist-logger-atom/releases"
     }
   },
   "standard-version": {

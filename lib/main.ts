@@ -33,6 +33,8 @@ enum InterpretationType {
     Exit = "http://www.zeitgeist-project.com/ontologies/2010/01/27/zg#LeaveEvent",
 }
 
+const BRIDGE_EXECUTABLE_NAME = "com.paysonwallach.zeitgeist.bridge"
+
 let subscriptions: CompositeDisposable | null
 let bridge: ChildProcess | null
 
@@ -96,7 +98,7 @@ async function logEvent(
  */
 export function activate(state: any) {
     subscriptions = new CompositeDisposable()
-    bridge = spawn("com.paysonwallach.zeitgeist.bridge")
+    bridge = spawn(BRIDGE_EXECUTABLE_NAME)
 
     bridge.on("error", (err) =>
         atom.notifications.addError(
@@ -149,5 +151,6 @@ export function activate(state: any) {
 }
 
 export function deactivate() {
+    if (bridge !== null && !bridge.killed) bridge.kill()
     if (subscriptions) subscriptions.dispose()
 }

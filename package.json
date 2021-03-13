@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "zeitgeist",
   "version": "0.2.0",
   "description": "Log activity in Atom to Zeitgeist.",

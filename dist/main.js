@@ -17,6 +17,7 @@ var InterpretationType;
     InterpretationType["Access"] = "http://www.zeitgeist-project.com/ontologies/2010/01/27/zg#AccessEvent";
     InterpretationType["Exit"] = "http://www.zeitgeist-project.com/ontologies/2010/01/27/zg#LeaveEvent";
 })(InterpretationType || (InterpretationType = {}));
+const BRIDGE_EXECUTABLE_NAME = "com.paysonwallach.zeitgeist.bridge";
 let subscriptions;
 let bridge;
 async function getMimeTypeForFile(path) {
@@ -42,7 +43,7 @@ async function logEvent(title, path, interpretation) {
 }
 function activate(state) {
     subscriptions = new atom_1.CompositeDisposable();
-    bridge = child_process_1.spawn("com.paysonwallach.zeitgeist.bridge");
+    bridge = child_process_1.spawn(BRIDGE_EXECUTABLE_NAME);
     bridge.on("error", (err) => atom.notifications.addError(`Unable to start Zeitgeist Bridge: ${err}`, {
         dismissable: true,
         buttons: [
@@ -82,6 +83,8 @@ function activate(state) {
 }
 exports.activate = activate;
 function deactivate() {
+    if (bridge !== null && !bridge.killed)
+        bridge.kill();
     if (subscriptions)
         subscriptions.dispose();
 }

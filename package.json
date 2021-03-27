@@ -29,8 +29,8 @@
     "uuidv4": "^6.2.7"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.0.1",
-    "@commitlint/config-conventional": "^12.0.1",
+    "@commitlint/cli": "^12.1.0",
+    "@commitlint/config-conventional": "^12.1.0",
     "@types/atom": "^1.40.10",
     "@types/electron": "^1.6.10",
     "@types/mmmagic": "^0.4.30",

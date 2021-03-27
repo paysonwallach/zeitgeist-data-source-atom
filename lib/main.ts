@@ -19,14 +19,11 @@ import { CompositeDisposable } from "atom"
 import { spawn, ChildProcess } from "child_process"
 import { shell } from "electron"
 import fileUrl from "file-url"
-import * as mmm from "mmmagic"
+import { Magic, MAGIC_MIME_TYPE } from "mmmagic"
 import { serialize } from "typescript-json-serializer"
 import { promisify } from "util"
 
 import { Subject, Event, InsertEventsRequest } from "./protocol"
-
-const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE)
-const detectFile = promisify(magic.detectFile)
 
 enum InterpretationType {
     Access = "http://www.zeitgeist-project.com/ontologies/2010/01/27/zg#AccessEvent",
@@ -50,6 +47,7 @@ async function getMimeTypeForFile(path: string): Promise<string> {
                 resolve("text/plain")
             }
         )
+let magic: Magic | null
     })
 }
 
@@ -99,6 +97,7 @@ async function logEvent(
 export function activate(state: any) {
     subscriptions = new CompositeDisposable()
     bridge = spawn(BRIDGE_EXECUTABLE_NAME)
+    magic = new Magic(MAGIC_MIME_TYPE)
 
     bridge.on("error", (err) =>
         atom.notifications.addError(
@@ -153,4 +152,5 @@ export function activate(state: any) {
 export function deactivate() {
     if (bridge !== null && !bridge.killed) bridge.kill()
     if (subscriptions) subscriptions.dispose()
+    if (magic !== null) magic = null
 }

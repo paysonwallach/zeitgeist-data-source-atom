@@ -21,7 +21,6 @@ import { shell } from "electron"
 import fileUrl from "file-url"
 import { Magic, MAGIC_MIME_TYPE } from "mmmagic"
 import { serialize } from "typescript-json-serializer"
-import { promisify } from "util"
 
 import { Subject, Event, InsertEventsRequest } from "./protocol"
 
@@ -34,20 +33,22 @@ const BRIDGE_EXECUTABLE_NAME = "com.paysonwallach.zeitgeist.bridge"
 
 let subscriptions: CompositeDisposable | null
 let bridge: ChildProcess | null
-
-async function getMimeTypeForFile(path: string): Promise<string> {
-    return new Promise<string>((resolve) => {
-        detectFile(path).then(
-            (mimeType) => {
-                // @ts-ignore
-                resolve(mimeType)
-            },
-            (error) => {
-                console.warn(error)
-                resolve("text/plain")
-            }
-        )
 let magic: Magic | null
+
+async function getMimeTypeForFile(path: string): Promise<string | undefined> {
+    return new Promise<string | undefined>((resolve, reject) => {
+        if (magic === null) return reject("libmagic proxy is not initialized")
+        else
+            magic.detectFile(path, async (err, result) => {
+                if (err) {
+                    console.error(err)
+                    return resolve(undefined)
+                } else {
+                    if (result.constructor === Array) return resolve(result[0])
+                    // @ts-ignore
+                    else return resolve(result)
+                }
+            })
     })
 }
 

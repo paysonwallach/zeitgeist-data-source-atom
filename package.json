@@ -13,7 +13,7 @@
   "main": "dist/main",
   "scripts": {
     "build": "run-s clean build:ts",
-    "build:ts": "tsc --outDir dist",
+    "build:ts": "tsc --outDir dist/",
     "clean": "shx rm -rf dist",
     "format": "run-p format:*",
     "format:js": "eslint --fix .",

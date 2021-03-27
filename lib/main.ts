@@ -24,7 +24,7 @@ import { serialize } from "typescript-json-serializer"
 
 import { Subject, Event, InsertEventsRequest } from "./protocol"
 
-enum InterpretationType {
+enum Interpretation {
     Access = "http://www.zeitgeist-project.com/ontologies/2010/01/27/zg#AccessEvent",
     Exit = "http://www.zeitgeist-project.com/ontologies/2010/01/27/zg#LeaveEvent",
 }
@@ -55,18 +55,20 @@ async function getMimeTypeForFile(path: string): Promise<string | undefined> {
 async function logEvent(
     title: string,
     path: string,
-    interpretation: InterpretationType
+    interpretation: Interpretation
 ) {
+    const mimeType = await getMimeTypeForFile(path)
+    const url = fileUrl(path)
     const subject = new Subject(
         undefined,
         undefined,
         "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#SourceCode",
         undefined,
-        await getMimeTypeForFile(path),
+        mimeType,
         undefined,
         undefined,
         title,
-        path
+        url
     )
 
     const event = new Event(
@@ -83,6 +85,7 @@ async function logEvent(
             JSON.stringify(serialize(new InsertEventsRequest([event])))
         )
         const header = Buffer.alloc(4)
+
         header.writeInt32LE(message.length, 0)
 
         // @ts-ignore
@@ -92,10 +95,7 @@ async function logEvent(
     }
 }
 
-/**
- * @param  {any} state the current state of atom
- */
-export function activate(state: any) {
+export function activate(): void {
     subscriptions = new CompositeDisposable()
     bridge = spawn(BRIDGE_EXECUTABLE_NAME)
     magic = new Magic(MAGIC_MIME_TYPE)
@@ -109,19 +109,23 @@ export function activate(state: any) {
                     {
                         text: "View README",
                         onDidClick: () =>
-                            shell.openExternal("https://github.com/paysonwallach/atom-zeitgeist")
+                            shell.openExternal(
+                                "https://github.com/paysonwallach/atom-zeitgeist"
+                            ),
                     },
                     {
                         text: "Download Zeitgeist Bridge",
                         onDidClick: () =>
-                            shell.openExternal("https://github.com/paysonwallach/atom-zeitgeist/release/latest")
-                    }
+                            shell.openExternal(
+                                "https://github.com/paysonwallach/atom-zeitgeist/release/latest"
+                            ),
+                    },
                 ],
                 description:
-                    "This can occur if you do not have Zeitgeist Bridge installed or it is not in your '$PATH'."
+                    "This can occur if you do not have Zeitgeist Bridge installed or it is not in your '$PATH'.",
             }
-          )
-    );
+        )
+    )
     atom.workspace.observeTextEditors((editor) => {
         const editorSubscriptions = new CompositeDisposable()
 
@@ -130,11 +134,10 @@ export function activate(state: any) {
             const path = editor.getPath()
 
             if (path !== undefined) {
-                const uri = fileUrl(path)
-                logEvent(title, uri, InterpretationType.Access)
+                logEvent(title, path, Interpretation.Access)
                 editorSubscriptions.add(
                     editor.onDidDestroy(() => {
-                        logEvent(title, uri, InterpretationType.Exit)
+                        logEvent(title, path, Interpretation.Exit)
 
                         editorSubscriptions.dispose()
                         if (subscriptions !== null)
@@ -143,14 +146,14 @@ export function activate(state: any) {
                 )
             }
         } catch (error) {
-            console.warn(error)
+            console.error(error)
         }
 
         if (subscriptions !== null) subscriptions.add(editorSubscriptions)
     })
 }
 
-export function deactivate() {
+export function deactivate(): void {
     if (bridge !== null && !bridge.killed) bridge.kill()
     if (subscriptions) subscriptions.dispose()
     if (magic !== null) magic = null

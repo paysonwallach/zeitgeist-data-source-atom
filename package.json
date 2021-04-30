@@ -5,10 +5,10 @@
   "description": "Log activity in Atom to Zeitgeist.",
   "license": "GPL-3.0",
   "author": "Payson Wallach <payson@paysonwallach.com>",
-  "homepage": "https://github.com/paysonwallach/zeitgeist-logger-atom#readme",
+  "homepage": "https://github.com/paysonwallach/zeitgeist-data-source-atom#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paysonwallach/zeitgeist-logger-atom"
+    "url": "https://github.com/paysonwallach/zeitgeist-data-source-atom"
   },
   "main": "dist/main",
   "scripts": {
@@ -29,8 +29,8 @@
     "uuidv4": "^6.2.7"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.2",
-    "@commitlint/config-conventional": "^12.1.2",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
     "@types/atom": "^1.40.10",
     "@types/electron": "^1.6.10",
     "@types/mmmagic": "^0.4.30",
@@ -57,27 +57,21 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run format"
-    }
-  },
   "meta": {
-    "title": "zeitgeist-logger-atom",
+    "title": "zeitgeist-data-source-atom",
     "repository": {
       "owner": "paysonwallach",
-      "name": "zeitgeist-logger-atom"
+      "name": "zeitgeist-data-source-atom"
     },
     "license": {
       "name": "GNU General Public License v3.0",
-      "url": "https://github.com/paysonwallach/zeitgeist-logger-atom/blob/master/LICENSE"
+      "url": "https://github.com/paysonwallach/zeitgeist-data-source-atom/blob/master/LICENSE"
     },
     "codeOfConduct": {
-      "url": "https://github.com/paysonwallach/zeitgeist-logger-atom/blob/master/CODE_OF_CONDUCT.md"
+      "url": "https://github.com/paysonwallach/zeitgeist-data-source-atom/blob/master/CODE_OF_CONDUCT.md"
     },
     "releases": {
-      "url": "https://github.com/paysonwallach/zeitgeist-logger-atom/releases"
+      "url": "https://github.com/paysonwallach/zeitgeist-data-source-atom/releases"
     }
   },
   "standard-version": {

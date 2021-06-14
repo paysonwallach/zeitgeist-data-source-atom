@@ -25,7 +25,7 @@
     "file-url": "^3.0.0",
     "mmmagic": "^0.5.3",
     "tslib": "^2.3.0",
-    "typescript-json-serializer": "^3.4.0",
+    "typescript-json-serializer": "^3.4.1",
     "uuidv4": "^6.2.10"
   },
   "devDependencies": {
@@ -34,8 +34,8 @@
     "@types/atom": "^1.40.11",
     "@types/electron": "^1.6.10",
     "@types/mmmagic": "^0.4.30",
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
-    "@typescript-eslint/parser": "^4.31.0",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

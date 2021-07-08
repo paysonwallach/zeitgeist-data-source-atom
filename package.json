@@ -25,13 +25,13 @@
     "file-url": "^4.0.0",
     "mmmagic": "^0.5.3",
     "tslib": "^2.3.0",
-    "typescript-json-serializer": "^3.4.2",
+    "typescript-json-serializer": "^3.4.3",
     "uuidv4": "^6.2.11"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.0.0",
     "@commitlint/config-conventional": "^13.0.0",
-    "@types/atom": "^1.40.10",
+    "@types/atom": "^1.40.11",
     "@types/electron": "^1.6.10",
     "@types/mmmagic": "^0.4.30",
     "@typescript-eslint/eslint-plugin": "^4.28.2",

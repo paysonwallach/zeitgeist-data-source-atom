@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { CompositeDisposable } from "atom"
+import { CompositeDisposable, TextEditor } from "atom"
 import { spawn, ChildProcess } from "child_process"
 import { shell } from "electron"
 import fileUrl from "file-url"
@@ -34,6 +34,7 @@ const BRIDGE_EXECUTABLE_NAME = "com.paysonwallach.zeitgeist.bridge"
 let subscriptions: CompositeDisposable | null
 let bridge: ChildProcess | null
 let magic: Magic | null
+let previousEditor: TextEditor | undefined
 
 async function getMimeTypeForFile(path: string): Promise<string | undefined> {
     return new Promise<string | undefined>((resolve, reject) => {
@@ -126,31 +127,26 @@ export function activate(): void {
             }
         )
     )
-    atom.workspace.observeTextEditors((editor) => {
-        const editorSubscriptions = new CompositeDisposable()
-
-        try {
-            const title = editor.getTitle()
-            const path = editor.getPath()
-
-            if (path !== undefined) {
-                logEvent(title, path, Interpretation.Access)
-                editorSubscriptions.add(
-                    editor.onDidDestroy(() => {
-                        logEvent(title, path, Interpretation.Exit)
-
-                        editorSubscriptions.dispose()
-                        if (subscriptions !== null)
-                            subscriptions.remove(editorSubscriptions)
-                    })
-                )
-            }
-        } catch (error) {
-            console.error(error)
+    const onActiveTextEditorDidChangeSubscription =
+            atom.workspace.onDidChangeActiveTextEditor((editor) => {
+        if (previousEditor !== undefined) {
+            const title = previousEditor.getTitle()
+            const path = previousEditor.getPath()
+            if (path !== undefined)
+                logEvent(title, path, Interpretation.Exit)
         }
 
-        if (subscriptions !== null) subscriptions.add(editorSubscriptions)
+        if (editor !== undefined) {
+            const title = editor.getTitle()
+            const path = editor.getPath()
+            if (path !== undefined) {
+                logEvent(title, path, Interpretation.Access)
+                previousEditor = editor
+            }
+        }
     })
+    if (subscriptions !== null)
+        subscriptions.add(onActiveTextEditorDidChangeSubscription)
 }
 
 export function deactivate(): void {

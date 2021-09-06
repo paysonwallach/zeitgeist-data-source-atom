@@ -18,6 +18,7 @@ const BRIDGE_EXECUTABLE_NAME = "com.paysonwallach.zeitgeist.bridge";
 let subscriptions;
 let bridge;
 let magic;
+let previousEditor;
 async function getMimeTypeForFile(path) {
     return new Promise((resolve, reject) => {
         if (magic === null)
@@ -68,27 +69,24 @@ function activate() {
         ],
         description: "This can occur if you do not have Zeitgeist Bridge installed or it is not in your '$PATH'.",
     }));
-    atom.workspace.observeTextEditors((editor) => {
-        const editorSubscriptions = new atom_1.CompositeDisposable();
-        try {
+    const onActiveTextEditorDidChangeSubscription = atom.workspace.onDidChangeActiveTextEditor((editor) => {
+        if (previousEditor !== undefined) {
+            const title = previousEditor.getTitle();
+            const path = previousEditor.getPath();
+            if (path !== undefined)
+                logEvent(title, path, Interpretation.Exit);
+        }
+        if (editor !== undefined) {
             const title = editor.getTitle();
             const path = editor.getPath();
             if (path !== undefined) {
                 logEvent(title, path, Interpretation.Access);
-                editorSubscriptions.add(editor.onDidDestroy(() => {
-                    logEvent(title, path, Interpretation.Exit);
-                    editorSubscriptions.dispose();
-                    if (subscriptions !== null)
-                        subscriptions.remove(editorSubscriptions);
-                }));
+                previousEditor = editor;
             }
         }
-        catch (error) {
-            console.error(error);
-        }
-        if (subscriptions !== null)
-            subscriptions.add(editorSubscriptions);
     });
+    if (subscriptions !== null)
+        subscriptions.add(onActiveTextEditorDidChangeSubscription);
 }
 exports.activate = activate;
 function deactivate() {

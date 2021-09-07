@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.4.1 (2021-09-07)
+
+
+### Bug Fixes
+
+* Record changes of active editor only ([e17063f](https://github.com/paysonwallach/zeitgeist-data-source-atom/commit/e17063f9146d2b797883331051030e17f25b61b6))
+
 ### [0.3.0](https://github.com/paysonwallach/zeitgeist-data-source-atom/compare/v0.2.1...v0.3.0) (2021-03-27)
 
 
@@ -13,14 +20,12 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * Catch errors thrown during detection ([8f3f3b7](https://github.com/paysonwallach/zeitgeist-data-source-atom/commit/8f3f3b7a97110f7715acc26ccb94021682421007))
-* Fixup ([6448249](https://github.com/paysonwallach/zeitgeist-data-source-atom/commit/64482495d5dc90d0cb72a2c5b7c671501c58a937))
 
 ### 0.2.1 (2021-03-15)
 
 
 ### Bug Fixes
 
-* Convert editor path to uri ([85b3bb0](https://github.com/paysonwallach/zeitgeist-data-source-atom/commit/85b3bb082fa8eab8ee2dbbb719597d7d7ceecf25))
 * Kill host bridge on deactivation ([d124cb7](https://github.com/paysonwallach/zeitgeist-data-source-atom/commit/d124cb705d78b1cd02f4c4bc241739ec05850766))
 
 ## 0.2.0 (2021-01-02)

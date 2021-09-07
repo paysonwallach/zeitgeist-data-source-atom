@@ -2,7 +2,7 @@
   <h1>zeitgeist-data-source-atom</h1>
   <p>Log activity in Atom to Zeitgeist.</p>
   <a href="https://github.com/paysonwallach/zeitgeist-data-source-atom/releases/latest">
-    <img alt="Version 0.2.2" src="https://img.shields.io/badge/version-0.2.2-red.svg?cacheSeconds=2592000&style=flat-square" />
+    <img alt="Version 0.4.1" src="https://img.shields.io/badge/version-0.4.1-red.svg?cacheSeconds=2592000&style=flat-square" />
   </a>
   <a href="https://github.com/paysonwallach/zeitgeist-data-source-atom/blob/master/LICENSE" target="\_blank">
     <img alt="Licensed under the GNU General Public License v3.0" src="https://img.shields.io/github/license/paysonwallach/zeitgeist-data-source-atom?style=flat-square" />

@@ -17,18 +17,18 @@ let Subject = class Subject {
         this.uri = uri;
     }
 };
-Subject = tslib_1.__decorate([
-    typescript_json_serializer_1.Serializable(),
-    tslib_1.__param(0, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(1, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(2, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(3, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(4, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(5, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(6, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(7, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(8, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__metadata("design:paramtypes", [String, String, String, String, String, String, String, String, String])
+Subject = (0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.Serializable)(),
+    (0, tslib_1.__param)(0, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(1, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(2, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(3, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(4, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(5, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(6, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(7, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(8, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__metadata)("design:paramtypes", [String, String, String, String, String, String, String, String, String])
 ], Subject);
 exports.Subject = Subject;
 let Event = class Event {
@@ -45,51 +45,51 @@ let Event = class Event {
             this.id = 0;
     }
 };
-Event = tslib_1.__decorate([
-    typescript_json_serializer_1.Serializable(),
-    tslib_1.__param(0, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(1, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(2, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(3, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(4, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(5, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(6, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__param(7, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__metadata("design:paramtypes", [Array, Number, Number, String, String, String, String, String])
+Event = (0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.Serializable)(),
+    (0, tslib_1.__param)(0, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(1, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(2, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(3, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(4, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(5, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(6, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__param)(7, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__metadata)("design:paramtypes", [Array, Number, Number, String, String, String, String, String])
 ], Event);
 exports.Event = Event;
 let Message = class Message {
     constructor(context) {
         this.apiVersion = "v2";
-        this.id = uuid_1.v4();
+        this.id = (0, uuid_1.v4)();
         this.context = context;
     }
 };
-tslib_1.__decorate([
-    typescript_json_serializer_1.JsonProperty(),
-    tslib_1.__metadata("design:type", String)
+(0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.JsonProperty)(),
+    (0, tslib_1.__metadata)("design:type", String)
 ], Message.prototype, "apiVersion", void 0);
-tslib_1.__decorate([
-    typescript_json_serializer_1.JsonProperty(),
-    tslib_1.__metadata("design:type", String)
+(0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.JsonProperty)(),
+    (0, tslib_1.__metadata)("design:type", String)
 ], Message.prototype, "id", void 0);
-tslib_1.__decorate([
-    typescript_json_serializer_1.JsonProperty(),
-    tslib_1.__metadata("design:type", String)
+(0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.JsonProperty)(),
+    (0, tslib_1.__metadata)("design:type", String)
 ], Message.prototype, "context", void 0);
-Message = tslib_1.__decorate([
-    typescript_json_serializer_1.Serializable(),
-    tslib_1.__metadata("design:paramtypes", [String])
+Message = (0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.Serializable)(),
+    (0, tslib_1.__metadata)("design:paramtypes", [String])
 ], Message);
 let InsertEventsRequestData = class InsertEventsRequestData {
     constructor(events) {
         this.events = events;
     }
 };
-InsertEventsRequestData = tslib_1.__decorate([
-    typescript_json_serializer_1.Serializable(),
-    tslib_1.__param(0, typescript_json_serializer_1.JsonProperty()),
-    tslib_1.__metadata("design:paramtypes", [Array])
+InsertEventsRequestData = (0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.Serializable)(),
+    (0, tslib_1.__param)(0, (0, typescript_json_serializer_1.JsonProperty)()),
+    (0, tslib_1.__metadata)("design:paramtypes", [Array])
 ], InsertEventsRequestData);
 let InsertEventsRequest = class InsertEventsRequest extends Message {
     constructor(events) {
@@ -97,12 +97,12 @@ let InsertEventsRequest = class InsertEventsRequest extends Message {
         this.data = new InsertEventsRequestData(events);
     }
 };
-tslib_1.__decorate([
-    typescript_json_serializer_1.JsonProperty(),
-    tslib_1.__metadata("design:type", InsertEventsRequestData)
+(0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.JsonProperty)(),
+    (0, tslib_1.__metadata)("design:type", InsertEventsRequestData)
 ], InsertEventsRequest.prototype, "data", void 0);
-InsertEventsRequest = tslib_1.__decorate([
-    typescript_json_serializer_1.Serializable(),
-    tslib_1.__metadata("design:paramtypes", [Array])
+InsertEventsRequest = (0, tslib_1.__decorate)([
+    (0, typescript_json_serializer_1.Serializable)(),
+    (0, tslib_1.__metadata)("design:paramtypes", [Array])
 ], InsertEventsRequest);
 exports.InsertEventsRequest = InsertEventsRequest;

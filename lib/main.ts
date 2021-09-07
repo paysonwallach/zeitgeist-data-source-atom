@@ -128,23 +128,23 @@ export function activate(): void {
         )
     )
     const onActiveTextEditorDidChangeSubscription =
-            atom.workspace.onDidChangeActiveTextEditor((editor) => {
-        if (previousEditor !== undefined) {
-            const title = previousEditor.getTitle()
-            const path = previousEditor.getPath()
-            if (path !== undefined)
-                logEvent(title, path, Interpretation.Exit)
-        }
-
-        if (editor !== undefined) {
-            const title = editor.getTitle()
-            const path = editor.getPath()
-            if (path !== undefined) {
-                logEvent(title, path, Interpretation.Access)
-                previousEditor = editor
+        atom.workspace.onDidChangeActiveTextEditor((editor) => {
+            if (previousEditor !== undefined) {
+                const title = previousEditor.getTitle()
+                const path = previousEditor.getPath()
+                if (path !== undefined)
+                    logEvent(title, path, Interpretation.Exit)
             }
-        }
-    })
+
+            if (editor !== undefined) {
+                const title = editor.getTitle()
+                const path = editor.getPath()
+                if (path !== undefined) {
+                    logEvent(title, path, Interpretation.Access)
+                    previousEditor = editor
+                }
+            }
+        })
     if (subscriptions !== null)
         subscriptions.add(onActiveTextEditorDidChangeSubscription)
 }

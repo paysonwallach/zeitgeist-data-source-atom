@@ -29,7 +29,7 @@
     "uuidv4": "^6.2.12"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.0.2",
+    "@commitlint/cli": "^16.0.3",
     "@commitlint/config-conventional": "^16.0.0",
     "@types/atom": "^1.40.11",
     "@types/electron": "^1.6.10",
